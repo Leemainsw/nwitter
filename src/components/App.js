@@ -1,9 +1,9 @@
 import React from 'react';
-import Router from ''
+import AppRouter from "./Router";
 
 function App() {
   return (
-    <Router></Router>
+    <AppRouter></AppRouter>
   );
 }
 
