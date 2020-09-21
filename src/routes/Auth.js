@@ -14,12 +14,14 @@ const Auth = () => {
     
     const onSubmit = (event)=>{
         event.preventDefault();
+        // 기본값을 주지 않는다.
+        
     };
 
     return (
         <div>
             <form onSubmit={onSubmit}> 
-                <input name="email" type="text" placeholder="Email" required value={email} onChange={onChange}/>
+                <input name="email" type="email" placeholder="Email" required value={email} onChange={onChange}/>
                 <input name="password" type="password" placeholder="Password" required value={password} onChange={onChange}/>
                 <input type="submit" value="Log In" />
             </form>
