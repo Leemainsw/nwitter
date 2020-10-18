@@ -5,6 +5,7 @@ const Home = ({userObj}) => {
 
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
+    const [attachment, setAttachment] = useState();
 
     useEffect(()=>{    
         // getNweets();
@@ -40,16 +41,23 @@ const Home = ({userObj}) => {
         const reader = new FileReader();
         reader.readAsDataURL(theFile);
         reader.onload = (finishedEvent) => {
-            console.log(finishedEvent);
+            setAttachment(finishedEvent.currentTarget.result);
         }
     };
 
+    const onClearPhotoClick = () => setAttachment(null);
     return (
         <div>
             <form onSubmit={onSubmit}>
                 <input value={nweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
                 <input type="file" accept="image/*" onChange={onFileChange} />
                 <input type="submit" value="Nweet" />
+                { attachment && 
+                    <div>
+                        <img src={attachment} width="50px" height="50px" />
+                        <button onClick={onClearPhotoClick}>Clear</button>
+                    </div>
+                }
             </form>
             <div>
                 {nweets.map((nweet) => (
