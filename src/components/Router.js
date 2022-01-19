@@ -1,19 +1,20 @@
 import React from "react";
 import Auth from "routes/Auth/Auth";
-import Home from "routes/Home";
+// import Home from "routes/Home";
+import Layer from "routes/Layer";
 import Profile from 'routes/Profile';
-import Navigation from 'components/Navigation';
 import {HashRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 
 const AppRouter = ({ isLoggedIn, userObj }) => {
     return (
         <Router>
-            {isLoggedIn && <Navigation />}
+            {/* {isLoggedIn} */}
             <Switch>
                 {isLoggedIn ? (
                         <>
                             <Route exact path="/">
-                                <Home userObj={userObj} />
+                                <Layer userObj={userObj} />
+                                {/* <Home userObj={userObj} /> */}
                             </Route>
                             <Route exact path="/profile">
                                 <Profile />

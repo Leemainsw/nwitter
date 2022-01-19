@@ -56,6 +56,7 @@ const Login = () => {
                                     placeholder="이메일을 입력해주세요"
                                     value={email}
                                     onChange={onChange}
+                                    required
                                 />
                             </div>
                             <div className="input-box">
@@ -66,6 +67,7 @@ const Login = () => {
                                     placeholder="이메일을 입력해주세요"
                                     value={password}
                                     onChange={onChange}
+                                    required
                                 />
                             </div>
                             <div className="btn-box">
