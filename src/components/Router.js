@@ -1,5 +1,5 @@
 import React from "react";
-import Auth from "routes/Auth";
+import Auth from "routes/Auth/Auth";
 import Home from "routes/Home";
 import Profile from 'routes/Profile';
 import Navigation from 'components/Navigation';
@@ -23,8 +23,14 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
                     )
                     : (
                         <>
-                            <Route exact psath="/">
-                                <Auth />
+                            <Route exact path="/">
+                                <Auth type={'login'} />
+                            </Route>
+                            <Route exact path="/signUp">
+                                <Auth type={'signUp'} />
+                            </Route>
+                            <Route exact path="/login">
+                                <Auth type={'login'} />
                             </Route>
                             <Redirect from="*" to="/" />
                         </>
