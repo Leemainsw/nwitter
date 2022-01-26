@@ -1,0 +1,101 @@
+.write-form{
+    display: flex;
+    height: auto;
+    padding: 20px;
+    /* border-bottom: 1px solid gray; */
+    box-shadow: 0px 1px 0px 0px rgb(97 97 97 / 25%);
+}
+
+.write-form .profile-box{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.write-form .profile-box img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.write-form form{
+    width: 85%;
+    padding-right: 20px;
+}
+
+.write-form form input{
+    width: 100%;
+    outline: none;
+    padding: 20px 0px 20px 0px;
+    white-space: pre-wrap;
+    border: none;
+
+    font-size: 20px;
+}
+
+.write-form form input::placeholder{
+    color: rgb(122, 122, 122);
+}
+
+.write-form form .input-box{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.write-form form .input-box .btn-tweet{
+    background-color: rgb(29, 155, 240);
+    width: 100px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+}
+
+.write-form form .input-box .button-box{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.write-form form .input-box .button-box button{
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+}
+
+.write-form form .img-box
+{
+    position:relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.write-form form .img-box button
+{
+    position: absolute;
+    z-index: 999;
+    background-color: rgb(75, 70, 70);
+    color: white;
+    font-size: 20px;
+    border: none;
+    top: 10px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.write-form form .img-box img{
+    width: 100%;
+    margin: 10px;
+}

@@ -42,19 +42,18 @@ ul li {
     color: black;
 }
 
-ul li:hover {
-    background-color: rgba(145, 145, 145, 0.541);
+ul li a {
+    text-decoration: none;
+    padding: 10px;
+}
+
+ul li a:hover {
+    background-color: rgba(179, 176, 176, 0.541);
     border-radius: 25px;
 
     width: auto;
 }
 
-ul li a {
-    text-decoration: none;
-}
-
-.bottom {
-}
 
 .bottom button{
     width: 200px;
@@ -73,10 +72,14 @@ ul li a {
 
 
 /*  메인 박스 스타일 */
-
 .main-box {
-    width: 50%;
+    width: 40%;
 
     background: #ffffff;
     box-shadow: 0px 0px 1px 1px rgba(97, 97, 97, 0.25);
+}
+
+body{
+    display: fixed;
+    overflow: hidden;
 }

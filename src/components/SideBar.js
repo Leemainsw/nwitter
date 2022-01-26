@@ -1,49 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import SideBarOption from "./SideBarOption";
 
 const SideBar = () => {
     return (
-        <>
+        <div className="side-box">
             <div className="logo"></div>
             <ul className="menu-box">
-                <li>
-                    <Link to="/">홈</Link>
-                </li>
-                <li>
-                    <Link to="/">탐색하기</Link>
-                </li>
-                <li>
-                    <Link to="/">알림</Link>
-                </li>
-                <li>
-                    <Link to="/">쪽지</Link>
-                </li>
-                <li>
-                    <Link to="/">북마크</Link>
-                </li>
-                <li>
-                    <Link to="/">리스트</Link>
-                </li>
-                <li>
-                    <Link to="/profile">프로필</Link>
-                </li>
+                <SideBarOption text={"홈"} path={"/"} />
+                <SideBarOption text={"탐색하기"} path={"/"} />
+                <SideBarOption text={"알림"} path={"/"} />
+                <SideBarOption text={"쪽지"} path={"/"} />
+                <SideBarOption text={"북마크"} path={"/"} />
+                <SideBarOption text={"리스트"} path={"/"} />
+                <SideBarOption text={"프로필"} path={"/profile"} />
             </ul>
 
             <div className="bottom">
                 <button>트윗하기</button>
             </div>
-
-            {/* <nav>
-    <ul>
-        <li>
-            <Link to="/">Home</Link>
-        </li>
-        <li>
-            <Link to="/profile">My Profile</Link>
-        </li>
-    </ul>
-</nav>; */}
-        </>
+        </div>
     );
 };
 

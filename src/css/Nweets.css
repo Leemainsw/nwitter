@@ -1,0 +1,103 @@
+.nweet-list{
+    padding: 0px !important;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.nweet-list .nweet-item{
+    display: flex;
+    flex-direction: row;
+    min-height: 150px;
+    padding: 10px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+    cursor: pointer;
+}
+
+
+.nweet-list .nweet-item:hover{
+    background-color: rgba(165, 165, 165, 0.171);
+}
+
+.nweet-list .nweet-item .profile-img 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    padding-top: 10px;
+}
+
+.nweet-list .nweet-item .profile-img img{
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nweet-list .nweet-item .text-box{
+    width: 100%;
+}
+
+.nweet-list .nweet-item .text-box h4{
+    margin: 0px;
+}
+
+.nweet-list .nweet-item .img-box{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nweet-list .nweet-item .img-box img{
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 1px 1px rgba(97, 97, 97, 0.25);
+}
+
+
+.nweet-list .nweet-item .text-box .bottom-box{
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nweet-list .nweet-item .more button{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer
+}
+
+.nweet-list .nweet-item .more button:hover{
+    background-color: rgba(206, 206, 206, 0.281);
+    border-radius: 50px;
+}
+.nweet-list .nweet-item .more button:active{
+    padding: 0;
+}
+
+/* 스크롤바 설정*/
+.nweet-list::-webkit-scrollbar{
+    display: none;
+    width: 6px;
+}
+
+/* 스크롤바 막대 설정*/
+.nweet-list::-webkit-scrollbar-thumb{
+    display: none;
+    height: 17%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;  
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.nweet-list::-webkit-scrollbar-track{
+    display: none;
+    background-color: rgba(255, 255, 255, 0.33);
+}
