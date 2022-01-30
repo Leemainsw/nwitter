@@ -18,7 +18,6 @@ const WriteForm = ({ userObj }) => {
 
         if(attachment) uploadStorage();
 
-        console.log(downloadUrl)
         await dbService.collection("nweets").add({
             text: nweet,
             createdAt: Date.now(),

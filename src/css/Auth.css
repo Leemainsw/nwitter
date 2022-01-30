@@ -127,11 +127,11 @@ input:focus { outline: none; }
 }
 
 /* 버튼 클릭시 효과 */
-button:active{
-    box-shadow: 2px 2px 0 rgba(97, 96, 96, 0.5);
-    position: relative;
-    top:2px;
-}
+    /* button:active{
+        box-shadow: 2px 2px 0 rgba(97, 96, 96, 0.5);
+        position: relative;
+        top:2px;
+    } */
 
 .bg-box{
     position: relative;

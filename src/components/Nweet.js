@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import { dbService } from "fbase";
+import DropDown from "./DropDown";
 
-const Nweet = ({ nweetObj, isOwner }) => {
+const Nweet = ({ nweetObj, isOwner, uid }) => {
     const [editing, setEditing] = useState(false);
     const [newNweet, setNewNweet] = useState(nweetObj.text);
+    const [dropDown, setDropDown] = useState(false);
 
-    const onDeleteClick = async () => {
-        const ok = window.confirm(
-            "Are you sure you want to delete this nweet?"
-        );
-        if (ok) {
-            await dbService.doc(`nweets/${nweetObj.id}`).delete();
-        }
-    };
+    // const onDeleteClick = async () => {
+    //     const ok = window.confirm(
+    //         "Are you sure you want to delete this nweet?"
+    //     );
+    //     if (ok) {
+    //         await dbService.doc(`nweets/${nweetObj.id}`).delete();
+    //     }
+    // };
 
     const toggleEditing = async () => setEditing((prev) => !prev);
+    const toggleDropDown = async () => setDropDown(!dropDown);
+    
     const onSubmit = async (event) => {
         event.preventDefault();
         await dbService.doc(`nweets/${nweetObj.id}`).update({
@@ -22,6 +26,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
         });
         setEditing(false);
     };
+    
     const onChange = (event) => {
         const {
             target: { value },
@@ -87,12 +92,15 @@ const Nweet = ({ nweetObj, isOwner }) => {
                         </div>
                     </div>
                     <div className="more">
-                        <button type="button">
+                        <button type="button" onClick={toggleDropDown}>
                             <img
                                 src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/40/000000/external-more-interface-kiranshastry-gradient-kiranshastry.png"
                                 alt="more-btn"
                             />
                         </button>
+                        {
+                            dropDown && <DropDown nweetObj={nweetObj} uid={uid} />
+                        }
                     </div>
                 </>
             )}

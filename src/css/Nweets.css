@@ -66,6 +66,10 @@
     justify-content: space-between;
 }
 
+.nweet-list .nweet-item .more {
+    position: relative;
+}
+
 .nweet-list .nweet-item .more button{
     width: 50px;
     height: 50px;

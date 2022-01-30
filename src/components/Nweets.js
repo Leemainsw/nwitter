@@ -13,13 +13,15 @@ const Nweets = ({userObj}) => {
         dbService.collection("nweets").orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
             const nweets = snapshot.docs;
 
-            if(!nweets || nweets.length === 0) return false;
+            if(!nweets || nweets.length === 0) {
+                setNweets([])
+                return false;
+            }
 
             const nweetArray = nweets.map(doc=>({
-                id:doc.id, 
+                id: doc.id, 
                 ...doc.data(),
             }));
-
             
             setNweets(nweetArray);
         });   
@@ -28,10 +30,8 @@ const Nweets = ({userObj}) => {
 
     return(
         <div className="nweet-list">
-            {nweets.map((nweet) => (
-                <>
-                    <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>
-                </>
+            {nweets.map((nweet, index) => (
+                <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid} uid={userObj.uid} />
             ))}
         </div>
     )
