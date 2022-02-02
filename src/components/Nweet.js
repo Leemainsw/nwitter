@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { dbService } from "fbase";
 import DropDown from "./DropDown";
+import { useEffect } from "react";
 
 const Nweet = ({ nweetObj, isOwner, uid }) => {
     const [editing, setEditing] = useState(false);
     const [newNweet, setNewNweet] = useState(nweetObj.text);
-    const [dropDown, setDropDown] = useState(false);
+    const [dropDown, setDropDown] = useState(false)
+    const [user, setUser] = useState({});
+
+    useEffect(()=>{
+        const getData = async () => {
+            const tmpUser = await dbService.collection("users").doc(uid).get();
+            setUser(tmpUser.data());
+        }
+
+        getData();
+    }, [uid])
 
     // const onDeleteClick = async () => {
     //     const ok = window.confirm(
@@ -18,6 +29,7 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
 
     const toggleEditing = async () => setEditing((prev) => !prev);
     const toggleDropDown = async () => setDropDown(!dropDown);
+    const closeDropDown = async () => setDropDown(false);
     
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -35,26 +47,7 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
     };
 
     return (
-        <div className="nweet-item">
-            {editing ? (
-                <>
-                    {isOwner && (
-                        <>
-                            <form onSubmit={onSubmit}>
-                                <input
-                                    onChange={onChange}
-                                    type="text"
-                                    placeholder="Edit your nweet"
-                                    value={newNweet}
-                                    required
-                                />
-                                <input type="submit" value="Update Nweet" />
-                            </form>
-                            <button onClick={toggleEditing}>Cancel</button>
-                        </>
-                    )}
-                </>
-            ) : (
+        <div className="nweet-item" >
                 <>
                     <div className="profile-img">
                         <img
@@ -63,22 +56,12 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
                         />
                     </div>
                     <div className="text-box">
-                        <p>김솨솨</p>
+                        <p>{user.name ? user.name : ''}</p>
                         <h4>{nweetObj.text}</h4>
-                        {isOwner && (
-                            <>
-                                {/* 
-                                    <button onClick={onDeleteClick}>
-                                        Delete Nweet
-                                    </button>
-                                    <button onClick={toggleEditing}>Edit Nweet</button> 
-                                */}
-                            </>
-                        )}
                         {nweetObj.imageUrl && (
                             <div className="img-box">
                                 <img
-                                    src="https://firebasestorage.googleapis.com/v0/b/nwitter-8a8b4.appspot.com/o/u9Qiou6JKGb9SIkJx4W4XBcdafm2%2F91885264-25a9-492e-854b-ca51b2cff43b?alt=media&token=aa53ca31-5d16-48f2-a195-dd41180b2a63"
+                                    src={nweetObj.imageUrl}
                                     alt="ggimdsf"
                                 />
                             </div>
@@ -103,9 +86,8 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
                         }
                     </div>
                 </>
-            )}
         </div>
     );
-};
+}
 
 export default Nweet;

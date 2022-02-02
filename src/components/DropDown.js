@@ -16,6 +16,7 @@ const DropDown = ({ nweetObj }) => {
     };
 
     const openDeleteAlert = () => setDeleteAlert(true);
+    
     const closeDeleteAlert = () => setDeleteAlert(false);
 
     const editNweet = () => {};
