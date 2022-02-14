@@ -1,17 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, {useEffect, useState, useRef } from "react";
 
 import { dbService, storageService } from "fbase";
 import {v4 as uuidv4 } from 'uuid';
 
-import "../css/WriteForm.css";
-import Loading from "./Loading";
+import "css/WriteForm.css";
+import Loading from "../Loading";
 
 const WriteForm = ({ userObj }) => {
     const [nweet, setNweet] = useState("");
     const [attachment, setAttachment] = useState();
     const [downloadUrl, setDownloadUrl] = useState("");
     const [load, setLoad] = useState(false);
+    const [user, setUser] = useState({});
+    const defaultProfileImg = 'https://pbs.twimg.com/profile_images/1478708274270990344/xdq3NWXh_400x400.jpg'
+
     const imageInput = useRef();
+
+    useEffect(()=>{
+        const getData = async () => {
+            const tmpUser = await dbService.collection("users").doc(userObj.uid).get();
+            setUser(tmpUser.data());
+        }
+
+        getData();
+    }, [userObj])
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -75,7 +87,7 @@ const WriteForm = ({ userObj }) => {
             <div className="write-form">
                 <div className="profile-box">
                     <img
-                        src="https://pbs.twimg.com/profile_images/1478708274270990344/xdq3NWXh_400x400.jpg"
+                        src={user.profile ? user.profile : defaultProfileImg}
                         alt="profile"
                     />
                 </div>

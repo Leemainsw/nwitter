@@ -1,4 +1,4 @@
-import { authService } from "fbase";
+import { authService, dbService } from "fbase";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -33,7 +33,16 @@ const SignUp = () => {
                 email,
                 password
             );
-            console.log("data : ", data);
+            
+            const uid = data.user.uid;
+
+            await dbService.collection("users").doc(uid).set({
+                createDate: Date.now(),
+                name: name,
+                uid: uid,
+                email: email
+            });
+
         } catch (err) {
             const errMsg = showErrorMessage(err.code);
             alert(errMsg.subTitle);

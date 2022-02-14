@@ -3,9 +3,11 @@ import React, {useEffect, useState} from "react"
 import {dbService} from 'fbase';
 
 import Nweet from "components/Nweet";
-import WriteForm from "components/WriteForm";
-import Header from "components/Header";
-import Nweets from "components/Nweets";
+import WriteForm from "components/Home/WriteForm";
+import Header from "components/Home/Header";
+import Nweets from "components/Home/Nweets";
+
+import 'css/Home/Header.css'
 
 const Home = ({userObj}) => {
 

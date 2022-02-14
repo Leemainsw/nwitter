@@ -1,7 +1,7 @@
 import React from "react";
 import SideBarOption from "./SideBarOption";
 
-const SideBar = () => {
+const SideBar = (props) => {    
     return (
         <div className="side-box">
             <div className="logo"></div>

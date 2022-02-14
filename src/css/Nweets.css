@@ -29,12 +29,29 @@
 
 .nweet-list .nweet-item .profile-img img{
     width: 50px;
+    height: 50px;
     border-radius: 50%;
     margin-right: 10px;
 }
 
 .nweet-list .nweet-item .text-box{
     width: 100%;
+}
+
+.nweet-list .nweet-item .info-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nweet-list .nweet-item .info-box p{
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.nweet-list .nweet-item .info-box span{
+    font-size: 12px;
+    color: rgb(44, 43, 43);
 }
 
 .nweet-list .nweet-item .text-box h4{

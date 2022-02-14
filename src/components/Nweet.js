@@ -2,21 +2,29 @@ import React, { useState } from "react";
 import { dbService } from "fbase";
 import DropDown from "./DropDown";
 import { useEffect } from "react";
+import { displayedAt } from "services/functions";
+import ImageModal from "dialog/ImageModal";
 
-const Nweet = ({ nweetObj, isOwner, uid }) => {
+const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
     const [editing, setEditing] = useState(false);
     const [newNweet, setNewNweet] = useState(nweetObj.text);
-    const [dropDown, setDropDown] = useState(false)
+    const [dropDown, setDropDown] = useState(false);
+    const [imageModal, setImageModal] = useState(null);
     const [user, setUser] = useState({});
+    const defaultProfileImg =
+        "https://pbs.twimg.com/profile_images/1478708274270990344/xdq3NWXh_400x400.jpg";
 
-    useEffect(()=>{
+    useEffect(() => {
         const getData = async () => {
-            const tmpUser = await dbService.collection("users").doc(uid).get();
+            const tmpUser = await dbService
+                .collection("users")
+                .doc(creatorId)
+                .get();
             setUser(tmpUser.data());
-        }
+        };
 
         getData();
-    }, [uid])
+    }, [creatorId]);
 
     // const onDeleteClick = async () => {
     //     const ok = window.confirm(
@@ -30,7 +38,12 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
     const toggleEditing = async () => setEditing((prev) => !prev);
     const toggleDropDown = async () => setDropDown(!dropDown);
     const closeDropDown = async () => setDropDown(false);
-    
+    const openImageModal = async () => {
+        console.log(nweetObj);
+        setImageModal(nweetObj.imageUrl ? nweetObj.imageUrl : null);
+    };
+    const closeImageModal = async () => setImageModal(null);
+
     const onSubmit = async (event) => {
         event.preventDefault();
         await dbService.doc(`nweets/${nweetObj.id}`).update({
@@ -38,7 +51,7 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
         });
         setEditing(false);
     };
-    
+
     const onChange = (event) => {
         const {
             target: { value },
@@ -47,22 +60,30 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
     };
 
     return (
-        <div className="nweet-item" >
+        <>
+            <div className="nweet-item">
                 <>
                     <div className="profile-img">
                         <img
-                            src="https://pbs.twimg.com/profile_images/1478708274270990344/xdq3NWXh_400x400.jpg"
+                            src={
+                                user.profile ? user.profile : defaultProfileImg
+                            }
                             alt="profile"
                         />
                     </div>
                     <div className="text-box">
-                        <p>{user.name ? user.name : ''}</p>
+                        <div className="info-box">
+                            <p>{user.name ? user.name : ""}</p>
+                            <span>{displayedAt(nweetObj.createdAt)}</span>
+                        </div>
+
                         <h4>{nweetObj.text}</h4>
                         {nweetObj.imageUrl && (
                             <div className="img-box">
                                 <img
                                     src={nweetObj.imageUrl}
-                                    alt="ggimdsf"
+                                    onClick={openImageModal}
+                                    alt="nweetImage"
                                 />
                             </div>
                         )}
@@ -81,13 +102,15 @@ const Nweet = ({ nweetObj, isOwner, uid }) => {
                                 alt="more-btn"
                             />
                         </button>
-                        {
-                            dropDown && <DropDown nweetObj={nweetObj} uid={uid} />
-                        }
+                        {dropDown && <DropDown nweetObj={nweetObj} uid={uid} />}
                     </div>
                 </>
-        </div>
+            </div>
+            {imageModal && (
+                <ImageModal src={imageModal} close={closeImageModal} />
+            )}
+        </>
     );
-}
+};
 
 export default Nweet;

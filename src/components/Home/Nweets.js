@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 
 import {dbService} from 'fbase';
 
-import Nweet from './Nweet';
+import Nweet from '../Nweet';
 
-import '../css/Nweets.css'
+import 'css/Nweets.css'
 
 const Nweets = ({userObj}) => {
     const [nweets , setNweets] = useState([]);
@@ -31,7 +31,7 @@ const Nweets = ({userObj}) => {
     return(
         <div className="nweet-list">
             {nweets.map((nweet, index) => (
-                <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid} uid={userObj.uid} />
+                <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid} uid={userObj.uid} creatorId={nweet.creatorId}/>
             ))}
         </div>
     )
