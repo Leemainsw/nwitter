@@ -5,15 +5,20 @@ import { useEffect } from "react";
 import { displayedAt } from "services/functions";
 import ImageModal from "dialog/ImageModal";
 
+import * as firebase from "firebase/app";
+
 const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
-    const [editing, setEditing] = useState(false);
-    const [newNweet, setNewNweet] = useState(nweetObj.text);
     const [dropDown, setDropDown] = useState(false);
     const [imageModal, setImageModal] = useState(null);
     const [user, setUser] = useState({});
     const defaultProfileImg =
         "https://pbs.twimg.com/profile_images/1478708274270990344/xdq3NWXh_400x400.jpg";
-
+    const heartDefaultImg = "https://firebasestorage.googleapis.com/v0/b/nwitter-8a8b4.appspot.com/o/Default%2Fheart-default.png?alt=media&token=7927f8b0-733f-40cc-8991-4e08b2a3f432"
+    const heartFullImg = "https://firebasestorage.googleapis.com/v0/b/nwitter-8a8b4.appspot.com/o/Default%2Fheart-full.png?alt=media&token=1631e657-93d5-4910-90a2-719366a2a4e9"
+    const commentImg= "https://firebasestorage.googleapis.com/v0/b/nwitter-8a8b4.appspot.com/o/Default%2Fcomment.png?alt=media&token=253a9c72-3c08-4958-923e-f8d2193702c6"
+    const reNweetImg = "https://firebasestorage.googleapis.com/v0/b/nwitter-8a8b4.appspot.com/o/Default%2Frenweet.png?alt=media&token=493b8c32-2126-4d7c-b192-19f3c3fcfde7"
+    const shareImg = "https://firebasestorage.googleapis.com/v0/b/nwitter-8a8b4.appspot.com/o/Default%2Fshare.png?alt=media&token=27722b17-9aac-41cc-a93c-06225c9f8c30"
+    
     useEffect(() => {
         const getData = async () => {
             const tmpUser = await dbService
@@ -26,38 +31,51 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
         getData();
     }, [creatorId]);
 
-    // const onDeleteClick = async () => {
-    //     const ok = window.confirm(
-    //         "Are you sure you want to delete this nweet?"
-    //     );
-    //     if (ok) {
-    //         await dbService.doc(`nweets/${nweetObj.id}`).delete();
-    //     }
-    // };
-
-    const toggleEditing = async () => setEditing((prev) => !prev);
     const toggleDropDown = async () => setDropDown(!dropDown);
-    const closeDropDown = async () => setDropDown(false);
-    const openImageModal = async () => {
-        console.log(nweetObj);
-        setImageModal(nweetObj.imageUrl ? nweetObj.imageUrl : null);
-    };
+    
+    const openImageModal = async () => setImageModal(nweetObj.imageUrl ? nweetObj.imageUrl : null);
+    
     const closeImageModal = async () => setImageModal(null);
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        await dbService.doc(`nweets/${nweetObj.id}`).update({
-            text: newNweet,
-        });
-        setEditing(false);
-    };
+    const likeBtn = () =>  {
+        
+        const likeArray = nweetObj.like;
 
-    const onChange = (event) => {
-        const {
-            target: { value },
-        } = event;
-        setNewNweet(value);
-    };
+        if(!likeArray || likeArray.length === 0) { 
+            dbService.collection("nweets").doc(nweetObj.id).update({
+                like: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+
+            return true;
+        }
+
+        const find = likeArray.find((ele)=> ele === uid);
+
+        if(find){
+            dbService.collection("nweets").doc(nweetObj.id).update({
+                like: firebase.firestore.FieldValue.arrayRemove(uid)
+            })
+
+            return true;
+        }else{
+            dbService.collection("nweets").doc(nweetObj.id).update({
+                like: firebase.firestore.FieldValue.arrayUnion(uid)
+            })
+
+            return true;
+        }
+    }
+
+    const heartImg = () => {
+        const likeArray = nweetObj.like;
+
+        if(!likeArray || likeArray.length === 0) { return heartDefaultImg }
+
+        const find = likeArray.find((ele)=> ele === uid) 
+
+        if(find) { return heartFullImg;}
+        else { return heartDefaultImg; }
+    }
 
     return (
         <>
@@ -89,10 +107,17 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
                         )}
 
                         <div className="bottom-box">
-                            <button className="comment">멘션</button>
-                            <button className="retweet">리트윗</button>
-                            <button className="like">좋아요</button>
-                            <button className="upload">업로드</button>
+                            <button className="comment">
+                                <img src={commentImg} alt="comment"/>
+                            </button>
+                            <button className="retweet">
+                                <img src={reNweetImg} alt="reNweet"/>
+                                </button>
+                            <button className="like" onClick={likeBtn}>
+                                <img src={heartImg()} alt="heart-default"/>
+                            </button>
+                            <button className="upload">
+                                <img src={shareImg} alt="share"/></button>
                         </div>
                     </div>
                     <div className="more">
