@@ -21,7 +21,7 @@ const AppRouter = ({ isLoggedIn, userObj }) => {
                 {isLoggedIn ? (
                     <>
                         <div className="layer-box">
-                            <SideBar />
+                            <SideBar userObj={userObj} />
                             <Route exact path="/">
                                 <Home userObj={userObj} />
                             </Route>
