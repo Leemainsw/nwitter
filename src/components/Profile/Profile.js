@@ -6,6 +6,7 @@ import Header from "components/Profile/Header";
 
 import 'css/Profile/Header.css';
 import Info from "./Info";
+import MyNweets from "./MyNweets";
 
 const Profile = ({userObj}) => {
     const history = useHistory();
@@ -18,6 +19,7 @@ const Profile = ({userObj}) => {
         <div className="profile-box">
             <Header userObj={userObj}/>
             <Info userObj={userObj}/>
+            <MyNweets userObj={userObj} />
         </div>
     )
 }

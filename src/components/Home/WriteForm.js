@@ -87,7 +87,7 @@ const WriteForm = ({ userObj }) => {
             <div className="write-form">
                 <div className="profile-box">
                     <img
-                        src={user.profile ? user.profile : defaultProfileImg}
+                        src={user && user.profile ? user.profile : defaultProfileImg}
                         alt="profile"
                     />
                 </div>
@@ -115,10 +115,6 @@ const WriteForm = ({ userObj }) => {
                                 <img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-image-interface-kiranshastry-gradient-kiranshastry.png"
                             width="20" height="20" alt="img-icon"/>
                             </button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>4</button>
-                            <button>5</button>
                         </div>
                         <button type="submit" value="Nweet" className="btn-tweet">
                             트윗하기

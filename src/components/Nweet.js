@@ -26,6 +26,8 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
                 .doc(creatorId)
                 .get();
             setUser(tmpUser.data());
+
+            console.log(tmpUser.data())
         };
 
         getData();
@@ -84,7 +86,7 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
                     <div className="profile-img">
                         <img
                             src={
-                                user.profile ? user.profile : defaultProfileImg
+                                user && user.profile ? user.profile : defaultProfileImg
                             }
                             alt="profile"
                         />

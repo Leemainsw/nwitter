@@ -61,7 +61,7 @@
 .write-form form .input-box .button-box{
     width: 40%;
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
     align-items: center;
 }
 

@@ -82,6 +82,22 @@
     justify-content: space-between;
 }
 
+.nweet-list .nweet-item .text-box .bottom-box button{
+    width: 35px;
+    height: 35px;
+    border: none;
+    background-color: transparent;
+}
+
+.nweet-list .nweet-item .text-box .bottom-box button:active{
+    transform: scale(0.90);
+}
+
+.nweet-list .nweet-item .text-box .bottom-box button img{ 
+    width: 100%
+}
+
+
 .nweet-list .nweet-item .more {
     position: relative;
 }
