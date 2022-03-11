@@ -79,7 +79,14 @@
     margin-top: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
+    align-items: center;
+}
+
+.nweet-list .nweet-item .text-box .bottom-box p
+{
+    font-size: 15px;
+    padding: 0 0 0.4rem 0.4rem  ;
 }
 
 .nweet-list .nweet-item .text-box .bottom-box button{
