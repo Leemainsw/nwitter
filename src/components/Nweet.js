@@ -29,7 +29,7 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
       const tmpUser = await dbService.collection("users").doc(creatorId).get();
       setUser(tmpUser.data());
 
-      console.log(tmpUser.data());
+      // console.log(tmpUser.data());
     };
 
     getData();

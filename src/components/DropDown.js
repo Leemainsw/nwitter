@@ -30,7 +30,7 @@ const DropDown = ({ nweetObj }) => {
             <button type="button" onClick={openDeleteAlert}>
                 삭제하기
             </button>
-            <button type="button" onClick={editNweet}>
+            {/* <button type="button" onClick={editNweet}>
                 수정하기
             </button>
             <button type="button" onClick={reportNweet}>
@@ -38,7 +38,7 @@ const DropDown = ({ nweetObj }) => {
             </button>
             <button type="button" onClick={blockUser}>
                 신고하기
-            </button>
+            </button> */}
 
             {deleteAlert && (
                 <AlertDialog
