@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { dbService } from "fbase";
+import { dbService,authService } from "fbase";
+import { useHistory } from "react-router-dom";
 
 import "css/Profile/Info.css";
 import EditProfileDialog from "dialog/EditProfileDialog";
 
 const Info = ({ userObj }) => {
+    const history = useHistory();
     const [user, setUser] = useState({});
     const [editProfile, setEditProfile] = useState(false);
     const defaultProfileImg =
@@ -22,7 +24,7 @@ const Info = ({ userObj }) => {
         getData();
     }, [userObj]);
 
-    const openEditProfile = () => setEditProfile(true);
+    // const openEditProfile = () => setEditProfile(true);
     const CloseEditProfile = () => setEditProfile(false);
 
     const dateFormat = (createDate) => {
@@ -37,6 +39,11 @@ const Info = ({ userObj }) => {
         );
     };
 
+    const onLogOutClick = () => {
+        authService.signOut();
+        history.push("/");
+    }
+
     return (
         <div className="info-main">
             <img
@@ -48,8 +55,11 @@ const Info = ({ userObj }) => {
                 <div className="profile">
                     <img src={user && user.profile ? user.profile : defaultProfileImg} alt="profile-img" />
                     <div></div>
-                    <button type="button" onClick={openEditProfile}>
+                    {/* <button type="button" onClick={openEditProfile}>
                         프로필 수정
+                    </button> */}
+                    <button type="button" onClick={onLogOutClick}>
+                        로그아웃
                     </button>
                 </div>
                 <div className="info-text-box">

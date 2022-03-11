@@ -76,6 +76,7 @@
 
 .nweet-list .nweet-item .text-box .bottom-box{
     width: 100%;
+    height: 50px;
     margin-top: 30px;
     display: flex;
     flex-direction: row;

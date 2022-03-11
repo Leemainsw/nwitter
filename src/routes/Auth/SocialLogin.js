@@ -86,8 +86,8 @@ const SocialLogin = () => {
       <SocialBox>
         <Button onClick={onSocialClick} name="google"></Button>
         <Button onClick={onSocialClick} name="github"></Button>
-        <Button onClick={onSocialClick} name="kakao"></Button>
-        <Button onClick={onSocialClick} name="twitter"></Button>
+        {/* <Button onClick={onSocialClick} name="kakao"></Button> */}
+        {/* <Button onClick={onSocialClick} name="twitter"></Button> */}
       </SocialBox>
     </>
   );
