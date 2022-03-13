@@ -61,11 +61,11 @@ ul li a:hover {
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
-    background-color: rgb(29, 155, 240);
+    background-color: rgb(198, 29, 240);
     color: white;
 }
 .bottom button:hover{
-    background-color: rgb(26, 133, 204);
+    background-color: rgb(198, 29, 240);
 }
 
 

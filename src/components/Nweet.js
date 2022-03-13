@@ -138,7 +138,7 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
               </button> */}
             </div>
           </div>
-          <div className="more">
+         {uid === creatorId &&  <div className="more">
             <button type="button" onClick={toggleDropDown}>
               <img
                 src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/40/000000/external-more-interface-kiranshastry-gradient-kiranshastry.png"
@@ -146,7 +146,7 @@ const Nweet = ({ nweetObj, isOwner, uid, creatorId }) => {
               />
             </button>
             {dropDown && <DropDown nweetObj={nweetObj} uid={uid} />}
-          </div>
+          </div>}
         </>
       </div>
       {imageModal && <ImageModal src={imageModal} close={closeImageModal} />}
